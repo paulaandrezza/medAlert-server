@@ -71,3 +71,25 @@ Nest is an MIT-licensed open source project. It can grow thanks to the sponsors 
 ## License
 
 Nest is [MIT licensed](LICENSE).
+
+## To add new table:
+
+In prisma/schema.prisma create
+
+```
+model <nameOfTable> {
+  <...atributes>
+}
+```
+
+After in terminal:
+
+```
+npx prisma migrate dev
+```
+
+To see the database in terminal:
+
+```
+npx prisma studio
+```
