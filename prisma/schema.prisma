@@ -11,42 +11,43 @@ datasource db {
 }
 
 model Person {
-  idPerson    Int    @id @default(autoincrement())
+  id          Int    @id @default(autoincrement())
   name        String
   dateOfBirth String
   gender      String
   height      Float?
   weight      Float?
 
-  Medications Medication[]
+  Medication Medication[]
 }
 
 model MedicationType {
-  idMedication Int          @id @default(autoincrement())
-  type         String
-  Medication   Medication[]
+  id   Int    @id @default(autoincrement())
+  type String
+
+  Medication Medication[]
 }
 
 model Medication {
-  idMedication Int     @id @default(autoincrement())
-  name         String
-  dosage       String
-  frequency    String
-  notes        String?
+  id        Int     @id @default(autoincrement())
+  name      String
+  dosage    String
+  frequency String
+  notes     String?
 
-  person         Person @relation(fields: [personIdPerson], references: [idPerson])
-  personIdPerson Int
+  person   Person @relation(fields: [personId], references: [id])
+  personId Int
 
-  medicationType             MedicationType @relation(fields: [medicationTypeIdMedication], references: [idMedication])
-  medicationTypeIdMedication Int
+  medicationType   MedicationType @relation(fields: [medicationTypeId], references: [id])
+  medicationTypeId Int
 
-  MedicationSchedules MedicationSchedule[]
+  MedicationSchedule MedicationSchedule[]
 }
 
 model MedicationSchedule {
-  idMedication Int    @id @default(autoincrement())
-  time         String
+  id   Int    @id @default(autoincrement())
+  time String
 
-  medication             Medication @relation(fields: [medicationIdMedication], references: [idMedication])
-  medicationIdMedication Int
+  medication   Medication @relation(fields: [medicationId], references: [id])
+  medicationId Int
 }
