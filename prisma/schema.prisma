@@ -30,24 +30,16 @@ model MedicationType {
 }
 
 model Medication {
-  id        Int     @id @default(autoincrement())
-  name      String
-  dosage    Int
-  frequency Int
-  notes     String?
+  id            Int      @id @default(autoincrement())
+  name          String
+  dosage        Int
+  frequency     Int
+  notes         String?
+  firstSchedule DateTime
 
   person   Person @relation(fields: [personId], references: [id])
   personId Int
 
   medicationType   MedicationType @relation(fields: [medicationTypeId], references: [id])
   medicationTypeId Int
-
-  MedicationSchedule MedicationSchedule[]
-}
-
-model MedicationSchedule {
-  id   Int      @id @default(autoincrement())
-  time DateTime
-  medication   Medication @relation(fields: [medicationId], references: [id])
-  medicationId Int
 }
