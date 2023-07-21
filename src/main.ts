@@ -10,6 +10,8 @@ async function bootstrap() {
     AppModule,
     new FastifyAdapter(),
   );
-  await app.listen(3000, '0.0.0.0');
+  await app.listen(3333, '0.0.0.0', () => {
+    console.log('🚀 Server running at port 3333');
+  });
 }
 bootstrap();
