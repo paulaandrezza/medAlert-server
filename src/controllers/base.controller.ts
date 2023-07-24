@@ -1,4 +1,4 @@
-import { Body, Get, Param, ParseIntPipe, Post } from '@nestjs/common';
+import { Body, Delete, Get, Param, ParseIntPipe, Post } from '@nestjs/common';
 import { PrismaClient } from '@prisma/client';
 
 const prisma = new PrismaClient();
@@ -26,5 +26,13 @@ export class BaseController<T> {
       where: { id },
     });
     return entity;
+  }
+
+  @Delete(':id')
+  async deleteById(@Param('id', ParseIntPipe) id: number): Promise<T> {
+    const deletedEntity = await prisma[this.modelName].delete({
+      where: { id },
+    });
+    return deletedEntity;
   }
 }

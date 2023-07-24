@@ -37,9 +37,9 @@ model Medication {
   notes         String?
   firstSchedule DateTime
 
-  person   Person @relation(fields: [personId], references: [id])
+  person   Person @relation(fields: [personId], references: [id], onDelete: Cascade)
   personId Int
 
-  medicationType   MedicationType @relation(fields: [medicationTypeId], references: [id])
+  medicationType   MedicationType @relation(fields: [medicationTypeId], references: [id], onDelete: Restrict)
   medicationTypeId Int
 }
